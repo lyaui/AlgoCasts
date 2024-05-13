@@ -8,35 +8,50 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
+// function anagrams(stringA, stringB) {
+//   const getLowerCharsStr = (str) =>
+//     str
+//       .split('')
+//       .filter((_char) => _char)
+//       .join('')
+//       .toLowerCase();
+
+//   const strA = getLowerCharsStr(stringA);
+//   const strB = getLowerCharsStr(stringB);
+
+//   if (strA.length !== strB.length) return false;
+
+//   const getCharCounter = (str) =>
+//     str.split('').reduce((_acc, _cur) => {
+//       _acc[_cur] = _acc[_cur] === undefined ? 1 : _acc[_cur] + 1;
+//       return _acc;
+//     }, {});
+
+//   const counterA = getCharCounter(strA);
+//   const counterB = getCharCounter(strB);
+
+//   for (const key in counterA) {
+//     const itemA = counterA[key];
+//     const itemB = counterB[key];
+//     if (itemA !== itemB) return false;
+//   }
+
+//   return true;
+// }
+
 function anagrams(stringA, stringB) {
   const getLowerCharsStr = (str) =>
     str
       .split('')
       .filter((_char) => _char)
+      .sort()
       .join('')
       .toLowerCase();
 
   const strA = getLowerCharsStr(stringA);
   const strB = getLowerCharsStr(stringB);
 
-  if (strA.length !== strB.length) return false;
-
-  const getCharCounter = (str) =>
-    str.split('').reduce((_acc, _cur) => {
-      _acc[_cur] = _acc[_cur] === undefined ? 1 : _acc[_cur] + 1;
-      return _acc;
-    }, {});
-
-  const counterA = getCharCounter(strA);
-  const counterB = getCharCounter(strB);
-
-  for (const key in counterA) {
-    const itemA = counterA[key];
-    const itemB = counterB[key];
-    if (itemA !== itemB) return false;
-  }
-
-  return true;
+  return strA === strB;
 }
 
 module.exports = anagrams;
